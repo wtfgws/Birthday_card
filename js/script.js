@@ -6,6 +6,8 @@ const yes = document.querySelector(".yes");
 const no = document.querySelector(".no");
 
 const bubble = document.getElementById("bubble");
+const blossom =
+document.getElementById("blossomOverlay");
 
 let state = 0;
 let tries = 0;
@@ -135,7 +137,24 @@ function celebrate(){
     no.style.transform = "translateY(-250px) rotate(720deg) scale(0)";
     no.style.opacity = "0";
 
-    heartExplosion();
+ heartExplosion();
+
+startPetals();
+
+blossom.classList.add("show");
+
+blossom.style.animation = "none";
+blossom.offsetHeight;   // force reflow
+blossom.style.animation = "sakuraSway 2s ease-in-out";
+
+setTimeout(() => {
+
+    blossom.classList.remove("show");
+
+},9000);
+
+
+    
     document.body.animate(
 
 [
@@ -231,5 +250,49 @@ const gif2=document.querySelector(".gif2");
 gif1.style.animation="popGif .6s forwards";
 
 gif2.style.animation="popGifCorner .6s forwards";
+
+}
+function startPetals(){
+
+    const box = document.getElementById("petalsContainer");
+
+    let count = 0;
+
+    const rain = setInterval(()=>{
+
+        const petal = document.createElement("img");
+
+        petal.src = "images/petals.png";
+        petal.className = "petal";
+
+        // Spawn FROM THE BRANCH
+        const startX = 72 + Math.random()*18;
+        const startY = 3 + Math.random()*12;
+
+        petal.style.left = startX + "vw";
+        petal.style.top = startY + "vh";
+
+        petal.style.width =
+        (45 + Math.random()*20) + "px";
+
+        petal.style.animationDuration =
+        (5 + Math.random()*2) + "s";
+
+        petal.style.setProperty(
+            "--drift",
+            (Math.random()*160-80)+"px"
+        );
+
+        box.appendChild(petal);
+
+        setTimeout(()=>petal.remove(),7000);
+
+        count++;
+
+        if(count>8){
+            clearInterval(rain);
+        }
+
+    },150);
 
 }

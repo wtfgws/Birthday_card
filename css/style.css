@@ -432,3 +432,111 @@ transform:scale(1);
 }
 
 }
+#blossomOverlay{
+    position:fixed;
+    top:0;
+    right:0;
+    width:55vw;
+    height:50vh;
+
+    background:url("../images/sakura.png") no-repeat top right;
+    background-size:contain;
+
+    opacity:0;
+    pointer-events:none;
+    z-index:9999;
+
+    transition:opacity .8s ease;
+}
+
+#blossomOverlay.show{
+
+opacity:.5;
+
+transform:scaleY(1);
+transform-origin: top right;
+}
+#petalsContainer{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:9998;
+}
+
+.petal{
+    position:absolute;
+    top:-60px;
+    width:72px;
+    opacity:.9;
+
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+
+0%{
+
+opacity:.95;
+
+transform:
+translate(0,0)
+rotate(0deg);
+
+}
+
+35%{
+
+opacity:.8;
+
+transform:
+translate(calc(var(--drift)/4),35vh)
+rotate(120deg);
+
+}
+
+70%{
+
+opacity:.45;
+
+transform:
+translate(calc(var(--drift)/1.7),75vh)
+rotate(300deg);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:
+translate(var(--drift),110vh)
+rotate(540deg);
+
+}
+
+}
+
+@keyframes sakuraSway{
+
+0%{
+transform:rotate(0deg);
+}
+
+25%{
+transform:rotate(1.5deg);
+}
+
+50%{
+transform:rotate(-1deg);
+}
+
+75%{
+transform:rotate(1deg);
+}
+
+100%{
+transform:rotate(0deg);
+}
+
+}
